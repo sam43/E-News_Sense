@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.androidbelieve.drawerwithswipetabs">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".TopNews.TopNewsDetails" />
+        <activity android:name=".TabLatest.LatestNewsDetails" />
+        <activity android:name=".DrawerFragments.NewsDetails.BusinessNewsDetails" />
+        <activity
+            android:name=".BottomSheet.BottomSheetBaseActivity"
+            android:excludeFromRecents="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:theme="@style/BottomSheet.Light" />
+        <activity
+            android:name="ch.tutti.android.bottomsheet.BottomSheetChooserActivity"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:theme="@style/BottomSheet.Light" />
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

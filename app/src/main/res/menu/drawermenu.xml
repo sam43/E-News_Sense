@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/home"
+          android:id="@+id/nav_item_news"
+          android:icon="@drawable/home"/>
+
+    <item android:title="@string/bangla"
+        android:id="@+id/nav_item_breaking"
+        android:icon="@drawable/bangla"/>
+
+    <item android:title="@string/business_news"
+        android:id="@+id/nav_item_bangla"
+        android:icon="@drawable/business"/>
+
+    <item android:title="@string/sports"
+          android:id="@+id/nav_item_sports"
+          android:icon="@drawable/game"/>
+
+    <item android:title="@string/technologies"
+        android:id="@+id/nav_item_techs"
+        android:icon="@drawable/technology"/>
+
+    <item android:title="@string/entertainment"
+        android:id="@+id/nav_item_media"
+        android:icon="@drawable/enter"/>
+
+    <item android:title="@string/politics"
+        android:id="@+id/nav_item_politics"
+        android:icon="@drawable/politics"/>
+
+    <item android:title="@string/strange_news"
+        android:id="@+id/nav_item_odd"
+        android:icon="@drawable/strange"/>
+
+    <group android:id="@+id/group_settings_id">
+
+        <item android:title="@string/others">
+
+            <menu>
+                <item android:title="@string/about_devs"
+                    android:id="@+id/nav_item_about"
+                     android:icon="@drawable/aboutus"/>
+            </menu>
+        </item>
+    </group>
+
+</menu>

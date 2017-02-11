@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/lin_1">
+
+
+        <TextView
+            android:text="Company Information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="13dp"
+            android:textColor="@color/purple"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/textView3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="#3d3d3d"
+            android:text="RRM Sense Global Systech Ltd."
+            android:gravity="start"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_marginStart="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="#3d3d3d"
+            android:text="Google Play: http://www.play.google.com"
+            android:gravity="start"
+            android:autoLink="web"
+            android:layout_marginStart="25dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="#3d3d3d"
+            android:fontFamily="sans-serif"
+            android:text="Website: http://www.rrmsense.com"
+            android:autoLink="web"
+            android:gravity="start"
+            android:layout_marginStart="25dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/lin_2">
+
+
+            <TextView
+                android:text="Developer Information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="13dp"
+                android:textColor="@color/purple"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="#3d3d3d"
+                android:text="A. S. M. Sayem"
+                android:gravity="start"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-smallcaps"
+                android:layout_marginStart="25dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="#3d3d3d"
+                android:fontFamily="sans-serif"
+                android:text="Website: http://www.rrmsense.com"
+                android:autoLink="web"
+                android:gravity="start"
+                android:layout_marginStart="25dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="#3d3d3d"
+                android:fontFamily="sans-serif"
+                android:text="Facebook: http://www.facebook.com/samcse10"
+                android:autoLink="web"
+                android:gravity="start"
+                android:layout_marginStart="25dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#3d3d3d"
+                android:padding="5dp"
+                android:fontFamily="sans-serif"
+                android:text="Linkdin: http://www.linkdin.com/sam43"
+                android:autoLink="web"
+                android:gravity="start"
+                android:layout_marginStart="25dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="#3d3d3d"
+                android:text="Md. Habibur Rahman"
+                android:gravity="start"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-smallcaps"
+                android:layout_marginStart="25dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="#3d3d3d"
+                android:fontFamily="sans-serif"
+                android:text="Website: http://www.rrmsense.com"
+                android:autoLink="web"
+                android:gravity="start"
+                android:layout_marginStart="25dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="#3d3d3d"
+                android:fontFamily="sans-serif"
+                android:text="Facebook: http://www.facebook.com/talha629"
+                android:autoLink="web"
+                android:gravity="start"
+                android:layout_marginStart="25dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:text="Resources Information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="13dp"
+                    android:textColor="@color/purple"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="#3d3d3d"
+                    android:text="Splash Screen: https://github.com/JeasonWong/Particle"
+                    android:autoLink="web"
+                    android:gravity="center|start"
+                    android:layout_marginStart="25dp"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="#3d3d3d"
+                    android:fontFamily="sans-serif"
+                    android:text="Bottomsheet: https://github.com/tutti-ch/android-bottomsheet"
+                    android:autoLink="web"
+                    android:gravity="center|start"
+                    android:layout_marginStart="25dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="#666666"
+                    android:fontFamily="sans-serif"
+                    android:text="API Info: All newspaper information."
+                    android:textStyle="bold"
+                    android:gravity="start"
+                    android:layout_marginStart="25dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:text="Copyright Information"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="13dp"
+                        android:textColor="@color/purple"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Here is the Copyright information"
+                        android:gravity="start"
+                        android:textColor="#686868"
+                        android:layout_marginStart="25dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

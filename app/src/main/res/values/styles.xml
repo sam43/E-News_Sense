@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/purple</item>
+        <item name="colorPrimaryDark">@android:color/holo_purple</item>
+        <!-- To change the background of options menu-->
+        <item name="android:itemBackground">@color/lightpurple</item>
+        <!-- To change the text color of options menu-->
+        <item name="android:textColor">@color/colortext</item>
+        
+        <item name="android:dividerHeight">1dp</item>
+        
+        <item name="android:divider">@color/divider</item>
+    </style>
+</resources>
