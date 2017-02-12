@@ -30,7 +30,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class SportsRssFeeds extends AsyncTask<Void, Void, Void> {
     Context context;
     String address = "http://www.mirror.co.uk/sport/rss.xml";
-    //String address = "http://www.mirror.co.uk/news/weird-news/rss.xml";
     AppConfig appConfig;
     ProgressDialog progressDialog;
     ArrayList<OddDataModel> feedItems;

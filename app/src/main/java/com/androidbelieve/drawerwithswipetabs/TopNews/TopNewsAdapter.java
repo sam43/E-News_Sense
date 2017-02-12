@@ -81,8 +81,11 @@ public class TopNewsAdapter extends RecyclerView.Adapter<TopNewsAdapter.MyViewHo
 
             }
         };
+        try{
+            Picasso.with(context).load(String.valueOf(current.getThumbnailUrl())).into(mTarget);
+        }catch (Exception e){
 
-        Picasso.with(context).load(String.valueOf(current.getThumbnailUrl())).into(mTarget);
+        }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
