@@ -250,18 +250,13 @@ public class MainActivity extends AppCompatActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } if (id == R.id.action_refresh) {
+        if (id == R.id.action_refresh) {
             Intent i = getIntent();
             finish();
             startActivity(i); // for each page
 
             return true;
-        } if (id == R.id.action_help) {
-            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

@@ -92,7 +92,7 @@ public class OddRssFeeds extends AsyncTask<Void, Void, Void> {
                         } else if (cureent.getNodeName().equalsIgnoreCase("description")) {
                             item.setDescription(cureent.getTextContent());
                         } else if (cureent.getNodeName().equalsIgnoreCase("pubDate")) {
-                            item.setPubDate(cureent.getTextContent());
+                            item.setPubDate(cureent.getTextContent().replace("EST", ""));
                         } else if (cureent.getNodeName().equalsIgnoreCase("media:content")){
                             //this will return us thumbnail url
                             String url=cureent.getAttributes().item(1).getTextContent(); //item(index of the attribute)

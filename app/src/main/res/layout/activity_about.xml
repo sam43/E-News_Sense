@@ -193,7 +193,7 @@
                     android:padding="5dp"
                     android:textColor="#666666"
                     android:fontFamily="sans-serif"
-                    android:text="API Info: All newspaper information."
+                    android:text="API Info: All newspaper information. (mostly RSS feeds)"
                     android:textStyle="bold"
                     android:gravity="start"
                     android:layout_marginStart="25dp"/>
@@ -210,6 +210,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="14dp"
                         android:layout_marginTop="13dp"
+                        android:layout_marginBottom="5dp"
                         android:textColor="@color/purple"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -217,7 +218,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Here is the Copyright information"
+                        android:text="@string/company_info_details"
+                        android:fontFamily="sans-serif"
+                        android:textSize="13sp"
+                        android:padding="2dp"
+                        android:textStyle="bold"
                         android:gravity="start"
                         android:textColor="#686868"
                         android:layout_marginStart="25dp"/>
