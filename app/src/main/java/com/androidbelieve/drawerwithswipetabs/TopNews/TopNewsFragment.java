@@ -14,6 +14,7 @@ import com.androidbelieve.drawerwithswipetabs.R;
 public class TopNewsFragment extends Fragment {
 
     RecyclerView recyclerView;
+    TopRssFeed topRssFeed;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -21,10 +22,18 @@ public class TopNewsFragment extends Fragment {
         View v = inflater.inflate(R.layout.top_news_layout, container, false);
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerview_bng);
-        TopRssFeed topRssFeed = new TopRssFeed(getActivity(), recyclerView,((MainActivity) getActivity()).appConfig);
+        topRssFeed = new TopRssFeed(getActivity(), recyclerView,((MainActivity) getActivity()).appConfig);
         topRssFeed.execute();
 
         return v;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if ((topRssFeed.progressDialog != null) && topRssFeed.progressDialog.isShowing())
+            topRssFeed.progressDialog.dismiss();
+            topRssFeed.progressDialog = null;
     }
 
     @Override

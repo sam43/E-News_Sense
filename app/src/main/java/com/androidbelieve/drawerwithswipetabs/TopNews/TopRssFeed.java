@@ -44,7 +44,6 @@ public class TopRssFeed extends AsyncTask<Void, Void, Void> {
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
     }
-
     @Override
     protected void onPreExecute() {
         progressDialog.show();
@@ -61,7 +60,11 @@ public class TopRssFeed extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        progressDialog.dismiss();
+        if(progressDialog != null && progressDialog.isShowing()){
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+
         TopNewsAdapter adapter = new TopNewsAdapter(context, feedItems, appConfig);
         recyclerView.setLayoutManager(new GridLayoutManager(context,appConfig.getCOLOMN()));
         recyclerView.setAdapter(adapter);
@@ -119,4 +122,5 @@ public class TopRssFeed extends AsyncTask<Void, Void, Void> {
             return null;
         }
     }
+
 }

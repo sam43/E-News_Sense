@@ -40,6 +40,9 @@ import com.androidbelieve.drawerwithswipetabs.DrawerFragments.SportsFragment;
 import com.androidbelieve.drawerwithswipetabs.DrawerFragments.TechnologyFragment;
 import com.testfairy.TestFairy;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class MainActivity extends AppCompatActivity{
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity{
     public AppConfig appConfig;
     Toolbar toolbar;
     public int CURRENT_FRAGMENT;
+    //Deque<Integer> backStack = new ArrayDeque<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +61,9 @@ public class MainActivity extends AppCompatActivity{
 
         TestFairy.begin(this, "58be2cfb694001bf6c46ed8c644dfdb936be7b29");
 
-        int orientation = this.getResources().getConfiguration().orientation;
+        //int orientation = this.getResources().getConfiguration().orientation;
 
-        Log.d("Check", String.valueOf(orientation));
+        //Log.d("Check", String.valueOf(orientation));
 
         /** setting up spinner on toolbar*/
 
@@ -81,13 +85,9 @@ public class MainActivity extends AppCompatActivity{
          */
             mFragmentManager = getSupportFragmentManager();
 
-            if (getSupportFragmentManager().getBackStackEntryCount() > 0){
 
-                OpenFragments(getCurrentFragment());
+        OpenFragments(getCurrentFragment());
 
-            } else {
-                OpenFragments(SelectNewspaper.nav_item_news);
-            }
 
 
              //mFragmentTransaction = mFragmentManager.beginTransaction();
@@ -173,26 +173,53 @@ public class MainActivity extends AppCompatActivity{
         appConfig.setWIDTH(Resources.getSystem().getDisplayMetrics().widthPixels);
         //appConfig.setHEIGHT(Resources.getSystem().getDisplayMetrics().heightPixels);
         appConfig.CalculateColumn(x);
-        Log.d("Cxt",String.valueOf(appConfig.getCOLOMN()));
+        //Log.d("Cxt",String.valueOf(appConfig.getCOLOMN()));
         //appConfig.Image_Setter();
-        Toast.makeText(this,"Clm;"+appConfig.getCOLOMN()+","+Resources.getSystem().getDisplayMetrics().widthPixels,Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"Clm;"+appConfig.getCOLOMN()+","+Resources.getSystem().getDisplayMetrics().widthPixels,Toast.LENGTH_LONG).show();
 
     }
 
 
-        private int getCurrentFragment() {
+    private int getCurrentFragment() {
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        int i = sharedPref.getInt("CURRENT_FRAGMENT", SelectNewspaper.nav_item_news);
-        Log.d("CURRENT_FRAGMENT", String.valueOf(i));
-        return i;
+        int backStackCount = sharedPref.getInt("BACK_STACK_COUNT", 0);
+        if(backStackCount==0){
+            return SelectNewspaper.nav_item_news;
+        }else{
+            int i = sharedPref.getInt("FRAGMENT_"+backStackCount, SelectNewspaper.nav_item_news);
+        //Log.d("CURRENT_FRAGMENT", String.valueOf(i));
+            return i;
+        }
     }
     public void setCurrentFragment(){
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("CURRENT_FRAGMENT", CURRENT_FRAGMENT);
-        editor.commit();
+        int backStackCount = sharedPref.getInt("BACK_STACK_COUNT", 0);
+        if(backStackCount==0){
+            editor.putInt("FRAGMENT_"+(backStackCount+1), CURRENT_FRAGMENT);
+            editor.putInt("BACK_STACK_COUNT", (backStackCount+1));
+
+        }else{
+            int i = sharedPref.getInt("FRAGMENT_"+backStackCount, SelectNewspaper.nav_item_news);
+            if(i!=CURRENT_FRAGMENT){
+                editor.putInt("FRAGMENT_"+(backStackCount+1), CURRENT_FRAGMENT);
+                editor.putInt("BACK_STACK_COUNT", (backStackCount+1));
+
+            }
+
+        }
+
+        editor.apply();
         Log.d("CURRENT_FRAGMENT", String.valueOf(CURRENT_FRAGMENT));
+        /*
+        if(backStack.isEmpty()){
+            backStack.push(CURRENT_FRAGMENT);
+        }
+        else if(backStack.peek()!=CURRENT_FRAGMENT){
+            backStack.push(CURRENT_FRAGMENT);
+        }
+        */
     }
 
     @Override
@@ -244,17 +271,26 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
 
-        // We implements here our logic
-        //this.createDialog();
-        if (mFragmentManager.getBackStackEntryCount()>0) {
-            super.onBackPressed();
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        int backStackCount = sharedPref.getInt("BACK_STACK_COUNT", 0);
+        if(backStackCount==1){
+
+        }else{
+            //editor.putInt("FRAGMENT_"+backStackCount+1, CURRENT_FRAGMENT);
+            editor.putInt("BACK_STACK_COUNT", (backStackCount-1));
+            int i = sharedPref.getInt("FRAGMENT_"+(backStackCount-1), SelectNewspaper.nav_item_news);
+            OpenFragments(i);
+            editor.apply();
             return;
+
         }
+
+
 
         if(doubleBackToExit) {
             super.onBackPressed();
-            CURRENT_FRAGMENT = SelectNewspaper.nav_item_news;
-            setCurrentFragment();
+            editor.clear().apply();
             return;
         }
 
@@ -285,7 +321,6 @@ public class MainActivity extends AppCompatActivity{
                 ProthomAloFragment PAFrag = new ProthomAloFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, PAFrag)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.ITTEFAQ:
@@ -296,7 +331,6 @@ public class MainActivity extends AppCompatActivity{
                 IttefaqFragment ittefaqFragment = new IttefaqFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, ittefaqFragment)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.AAJKAL:
@@ -320,7 +354,6 @@ public class MainActivity extends AppCompatActivity{
                 SamakalFragment samakalFragment = new SamakalFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, samakalFragment)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.INQILAB:
@@ -356,7 +389,6 @@ public class MainActivity extends AppCompatActivity{
                 JugantorFragment jugantorFragment = new JugantorFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, jugantorFragment)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.KALER_KANTHA:
@@ -370,7 +402,6 @@ public class MainActivity extends AppCompatActivity{
                 KalerKanthoFragment kanthoFragment = new KalerKanthoFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, kanthoFragment)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.VORER_KAGOJ:
@@ -380,7 +411,6 @@ public class MainActivity extends AppCompatActivity{
                 VorerKagojFragment vorerKagojFragment = new VorerKagojFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, vorerKagojFragment)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.AMADER_SOMOY:
@@ -403,7 +433,6 @@ public class MainActivity extends AppCompatActivity{
                 TheindependentbdFragment independentbdFrag = new TheindependentbdFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, independentbdFrag)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.NEWAGE:
@@ -426,7 +455,6 @@ public class MainActivity extends AppCompatActivity{
                 ObserverbdFragment observerbdFrag = new ObserverbdFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, observerbdFrag)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.NEW_NATION:
@@ -449,7 +477,6 @@ public class MainActivity extends AppCompatActivity{
                 BDNews24Fragment bdFrag = new BDNews24Fragment();
                        this.getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.containerView, bdFrag)
-                                .addToBackStack(null)
                                 .commit();
 
                 break;
@@ -475,7 +502,6 @@ public class MainActivity extends AppCompatActivity{
                 FinancialExpressFragment financialExpressFragment = new FinancialExpressFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, financialExpressFragment)
-                        .addToBackStack(null)
                         .commit();
                 break;
             case SelectNewspaper.DAILY_SUN:
@@ -495,28 +521,28 @@ public class MainActivity extends AppCompatActivity{
                 getAppConfig(700);
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_bangla;
                 FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.containerView,new BusinessNewsFragment()).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.containerView,new BusinessNewsFragment()).commit();
 
                 break;
             case SelectNewspaper.nav_item_breaking:
                 getAppConfig(500);
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_breaking;
                 FragmentTransaction hfragmentTransaction = mFragmentManager.beginTransaction();
-                hfragmentTransaction.replace(R.id.containerView,new BanglaNewspaperFragment()).addToBackStack(null).commit();
+                hfragmentTransaction.replace(R.id.containerView,new BanglaNewspaperFragment()).commit();
 
                 break;
 /*            case SelectNewspaper.nav_item_entertainment:
 
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_entertainment;
                 FragmentTransaction efragmentTransaction = mFragmentManager.beginTransaction();
-                efragmentTransaction.replace(R.id.containerView,new EntertainmentFragment()).addToBackStack(null).commit();
+                efragmentTransaction.replace(R.id.containerView,new EntertainmentFragment()).commit();
 
                 break;*/
             case SelectNewspaper.nav_item_media:
                 getAppConfig(700);
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_media;
                 FragmentTransaction afragmentTransaction = mFragmentManager.beginTransaction();
-                afragmentTransaction.replace(R.id.containerView,new EntertainmentFragment()).addToBackStack(null).commit();
+                afragmentTransaction.replace(R.id.containerView,new EntertainmentFragment()).commit();
 
                 break;
             case SelectNewspaper.nav_item_news:
@@ -530,31 +556,31 @@ public class MainActivity extends AppCompatActivity{
                 getAppConfig(800);
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_odd;
                 FragmentTransaction cfragmentTransaction = mFragmentManager.beginTransaction();
-                cfragmentTransaction.replace(R.id.containerView,new OddNewsFragment()).addToBackStack(null).commit();
+                cfragmentTransaction.replace(R.id.containerView,new OddNewsFragment()).commit();
 
                 break;
             case SelectNewspaper.nav_item_politics:
                 getAppConfig(800);
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_politics;
                 FragmentTransaction ffragmentTransaction = mFragmentManager.beginTransaction();
-                ffragmentTransaction.replace(R.id.containerView,new PoliticsFragment()).addToBackStack(null).commit();
+                ffragmentTransaction.replace(R.id.containerView,new PoliticsFragment()).commit();
 
                 break;
             case SelectNewspaper.nav_item_about:
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_about;
                 FragmentTransaction jfragmentTransaction = mFragmentManager.beginTransaction();
-                jfragmentTransaction.replace(R.id.containerView,new AboutFragment()).addToBackStack(null).commit();
+                jfragmentTransaction.replace(R.id.containerView,new AboutFragment()).commit();
                 break;
             case SelectNewspaper.nav_item_sports:
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_sports;
                 FragmentTransaction dfragmentTransaction = mFragmentManager.beginTransaction();
-                dfragmentTransaction.replace(R.id.containerView,new SportsFragment()).addToBackStack(null).commit();
+                dfragmentTransaction.replace(R.id.containerView,new SportsFragment()).commit();
 
                 break;
             case SelectNewspaper.nav_item_techs:
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_techs;
                 FragmentTransaction bfragmentTransaction = mFragmentManager.beginTransaction();
-                bfragmentTransaction.replace(R.id.containerView,new TechnologyFragment()).addToBackStack(null).commit();
+                bfragmentTransaction.replace(R.id.containerView,new TechnologyFragment()).commit();
 
                 break;
         }
