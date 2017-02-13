@@ -8,10 +8,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="20dp"
@@ -21,42 +21,43 @@
                 android:id="@+id/thumb_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fitsSystemWindows="true"
                 android:scaleType="fitXY"/>
             <ImageView
+                android:id="@+id/share"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/links_share"
-                android:id="@+id/share"
                 android:layout_gravity="end"
-                android:layout_marginTop="-15dp"
                 android:layout_marginEnd="5dp"
-                android:clickable="true"/>
+                android:layout_marginTop="-15dp"
+                android:clickable="true"
+                android:src="@drawable/links_share"/>
             <TextView
                 android:id="@+id/title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="3"
+                android:layout_marginTop="-10dp"
                 android:fontFamily="sans-serif-condensed"
+                android:maxLines="3"
                 android:padding="3dp"
                 android:textColor="#222"
-                android:textStyle="bold"
-                android:layout_marginTop="-10dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
+            android:id="@+id/date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
             android:layout_marginEnd="10dp"
-            android:maxLines="1"
-            android:textSize="13sp"
             android:background="#9a767676"
-            android:id="@+id/date_text"
+            android:maxLines="1"
             android:padding="2dp"
             android:textColor="#fff"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"/>
+            android:textSize="13sp"/>
 
 
     </RelativeLayout>

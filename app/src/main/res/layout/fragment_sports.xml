@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.androidbelieve.drawerwithswipetabs.DrawerFragments.SportsFragment">
+    tools:context="com.rrmsense.enewspaperonline.DrawerFragments.SportsFragment">
 
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_sports"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerview_sports"
         android:layout_margin="3dp" />
 
 </RelativeLayout>

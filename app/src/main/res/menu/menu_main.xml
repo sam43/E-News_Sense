@@ -5,8 +5,8 @@
 
     <!-- update Found -->
     <item android:id="@+id/action_refresh"
-        android:title="@string/refresh"
         android:icon="@android:drawable/ic_popup_sync"
+        android:title="@string/refresh"
         app:showAsAction="ifRoom" />
 
 </menu>

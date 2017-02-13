@@ -4,22 +4,22 @@
     android:id="@+id/activity_latest_news_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.androidbelieve.drawerwithswipetabs.TabLatest.LatestNewsDetails">
+    tools:context="com.rrmsense.enewspaperonline.TabLatest.LatestNewsDetails">
 
     <WebView
+        android:id="@+id/webview_new"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/webview_new">
+        android:layout_centerHorizontal="true">
 
         <ProgressBar
+            android:id="@+id/progressBar_new"
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_x="170dp"
-            android:layout_y="75dp"
-            android:id="@+id/progressBar_new" />
+            android:layout_y="75dp" />
     </WebView>
 
 </RelativeLayout>

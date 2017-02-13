@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.androidbelieve.drawerwithswipetabs">
+    package="com.rrmsense.enewspaperonline">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.rrmsense.enewspaperonline.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +19,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".TopNews.TopNewsDetails" />
-        <activity android:name=".TabLatest.LatestNewsDetails" />
-        <activity android:name=".DrawerFragments.NewsDetails.BusinessNewsDetails" />
+        <activity android:name="com.rrmsense.enewspaperonline.TopNews.TopNewsDetails" />
+        <activity android:name="com.rrmsense.enewspaperonline.TabLatest.LatestNewsDetails" />
+        <activity android:name="com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.BusinessNewsDetails" />
         <activity
-            android:name=".BottomSheet.BottomSheetBaseActivity"
+            android:name="com.rrmsense.enewspaperonline.BottomSheet.BottomSheetBaseActivity"
             android:excludeFromRecents="false"
             android:finishOnCloseSystemDialogs="true"
             android:theme="@style/BottomSheet.Light" />
@@ -32,7 +32,8 @@
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
             android:theme="@style/BottomSheet.Light" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name="com.rrmsense.enewspaperonline.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

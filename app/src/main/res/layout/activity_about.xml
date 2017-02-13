@@ -6,69 +6,69 @@
     android:paddingBottom="10dp">
 
     <LinearLayout
+        android:id="@+id/lin_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/lin_1">
+        android:orientation="vertical">
 
 
         <TextView
-            android:text="Company Information"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="13dp"
+            android:text="@string/company_information"
             android:textColor="@color/purple"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:id="@+id/textView3" />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textColor="#3d3d3d"
-            android:text="RRM Sense Global Systech Ltd."
-            android:gravity="start"
-            android:textStyle="bold"
+            android:layout_marginStart="25dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:layout_marginStart="25dp"/>
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="@string/company_name"
+            android:textColor="#3d3d3d"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:autoLink="web"
+            android:gravity="start"
             android:padding="5dp"
-            android:textColor="#3d3d3d"
             android:text="Google Play: http://www.play.google.com"
-            android:gravity="start"
-            android:autoLink="web"
-            android:layout_marginStart="25dp"/>
+            android:textColor="#3d3d3d"/>
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textColor="#3d3d3d"
-            android:fontFamily="sans-serif"
-            android:text="Website: http://www.rrmsense.com"
+            android:layout_marginStart="25dp"
             android:autoLink="web"
+            android:fontFamily="sans-serif"
             android:gravity="start"
-            android:layout_marginStart="25dp"/>
+            android:padding="5dp"
+            android:text="@string/website"
+            android:textColor="#3d3d3d"/>
 
         <LinearLayout
+            android:id="@+id/lin_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/lin_2">
+            android:orientation="vertical">
 
 
             <TextView
-                android:text="Developer Information"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="13dp"
+                android:text="@string/dev_info"
                 android:textColor="@color/purple"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -76,78 +76,78 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textColor="#3d3d3d"
-                android:text="A. S. M. Sayem"
-                android:gravity="start"
-                android:textStyle="bold"
+                android:layout_marginStart="25dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:layout_marginStart="25dp"/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textColor="#3d3d3d"
-                android:fontFamily="sans-serif"
-                android:text="Website: http://www.rrmsense.com"
-                android:autoLink="web"
                 android:gravity="start"
-                android:layout_marginStart="25dp"/>
+                android:padding="5dp"
+                android:text="@string/developer_name"
+                android:textColor="#3d3d3d"
+                android:textStyle="bold"/>
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textColor="#3d3d3d"
+                android:layout_marginStart="25dp"
+                android:autoLink="web"
                 android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:padding="5dp"
+                android:text="@string/website"
+                android:textColor="#3d3d3d"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:autoLink="web"
+                android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:padding="5dp"
                 android:text="Facebook: http://www.facebook.com/samcse10"
-                android:autoLink="web"
-                android:gravity="start"
-                android:layout_marginStart="25dp"/>
+                android:textColor="#3d3d3d"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#3d3d3d"
-                android:padding="5dp"
+                android:layout_marginStart="25dp"
+                android:autoLink="web"
                 android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:padding="5dp"
                 android:text="Linkdin: http://www.linkdin.com/sam43"
-                android:autoLink="web"
-                android:gravity="start"
-                android:layout_marginStart="25dp"/>
+                android:textColor="#3d3d3d"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textColor="#3d3d3d"
-                android:text="Md. Habibur Rahman"
-                android:gravity="start"
-                android:textStyle="bold"
+                android:layout_marginStart="25dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:layout_marginStart="25dp"/>
+                android:gravity="start"
+                android:padding="5dp"
+                android:text="Md. Habibur Rahman"
+                android:textColor="#3d3d3d"
+                android:textStyle="bold"/>
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textColor="#3d3d3d"
+                android:layout_marginStart="25dp"
+                android:autoLink="web"
                 android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:padding="5dp"
                 android:text="Website: http://www.rrmsense.com"
-                android:autoLink="web"
-                android:gravity="start"
-                android:layout_marginStart="25dp"/>
+                android:textColor="#3d3d3d"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textColor="#3d3d3d"
-                android:fontFamily="sans-serif"
-                android:text="Facebook: http://www.facebook.com/talha629"
+                android:layout_marginStart="25dp"
                 android:autoLink="web"
+                android:fontFamily="sans-serif"
                 android:gravity="start"
-                android:layout_marginStart="25dp"/>
+                android:padding="5dp"
+                android:text="Facebook: http://www.facebook.com/talha629"
+                android:textColor="#3d3d3d"/>
 
 
             <LinearLayout
@@ -157,11 +157,11 @@
 
 
                 <TextView
-                    android:text="Resources Information"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="13dp"
+                    android:text="Resources Information"
                     android:textColor="@color/purple"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -169,34 +169,34 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:autoLink="web"
+                    android:gravity="center|start"
                     android:padding="5dp"
-                    android:textColor="#3d3d3d"
                     android:text="Splash Screen: https://github.com/JeasonWong/Particle"
-                    android:autoLink="web"
-                    android:gravity="center|start"
-                    android:layout_marginStart="25dp"/>
+                    android:textColor="#3d3d3d"/>
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:textColor="#3d3d3d"
+                    android:layout_marginStart="25dp"
+                    android:autoLink="web"
                     android:fontFamily="sans-serif"
+                    android:gravity="center|start"
+                    android:padding="5dp"
                     android:text="Bottomsheet: https://github.com/tutti-ch/android-bottomsheet"
-                    android:autoLink="web"
-                    android:gravity="center|start"
-                    android:layout_marginStart="25dp"/>
+                    android:textColor="#3d3d3d"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:textColor="#666666"
+                    android:layout_marginStart="25dp"
                     android:fontFamily="sans-serif"
-                    android:text="API Info: All newspaper information. (mostly RSS feeds)"
-                    android:textStyle="bold"
                     android:gravity="start"
-                    android:layout_marginStart="25dp"/>
+                    android:padding="5dp"
+                    android:text="API Info: All newspaper information. (mostly RSS feeds)"
+                    android:textColor="#666666"
+                    android:textStyle="bold"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -205,12 +205,12 @@
 
 
                     <TextView
-                        android:text="Copyright Information"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginStart="14dp"
                         android:layout_marginTop="13dp"
-                        android:layout_marginBottom="5dp"
+                        android:text="Other Informations"
                         android:textColor="@color/purple"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -218,14 +218,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/company_info_details"
+                        android:layout_marginStart="25dp"
                         android:fontFamily="sans-serif"
-                        android:textSize="13sp"
-                        android:padding="2dp"
-                        android:textStyle="bold"
                         android:gravity="start"
+                        android:padding="2dp"
+                        android:text="@string/company_info_details"
                         android:textColor="#686868"
-                        android:layout_marginStart="25dp"/>
+                        android:textSize="13sp"
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 

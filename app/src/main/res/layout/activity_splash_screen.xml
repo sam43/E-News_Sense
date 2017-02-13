@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:pv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_splash_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple"
-    tools:context="com.androidbelieve.drawerwithswipetabs.SplashScreenActivity">
+    tools:context="com.rrmsense.enewspaperonline.SplashScreenActivity">
 
 <TextView
+    android:id="@+id/textView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="RRM E-News"
-    android:textStyle="bold"
+    android:layout_marginTop="250dp"
     android:fontFamily="sans-serif"
+    android:gravity="center"
+    android:text="RRM E-News"
     android:textColor="#fff"
     android:textSize="32sp"
-    android:gravity="center"
-    android:layout_marginTop="250dp"
-    android:id="@+id/textView" />
+    android:textStyle="bold" />
 
     <me.wangyuwei.particleview.ParticleView
         android:id="@+id/pv_splash"
@@ -27,25 +27,25 @@
         android:layout_marginTop="350dp"
         pv:pv_background_color="@color/purple"
         pv:pv_host_text="RRM"
-        pv:pv_host_text_size="36sp"
-        pv:pv_particle_text=".sense"
-        pv:pv_particle_text_size="28sp"
-        pv:pv_text_color="#FFF"
-        pv:pv_spread_anim_time="2000"
         pv:pv_host_text_anim_time="1000"
-        pv:pv_text_anim_time="1000"/>
+        pv:pv_host_text_size="36sp"
+        pv:pv_particle_text="Sense"
+        pv:pv_particle_text_size="28sp"
+        pv:pv_spread_anim_time="2000"
+        pv:pv_text_anim_time="1000"
+        pv:pv_text_color="#FFF"/>
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="presented by-"
-        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
         android:layout_marginTop="17dp"
-        android:textSize="16sp"
-        android:textColor="#fff"
-        android:gravity="center"
         android:fontFamily="sans-serif-condensed"
-        android:id="@+id/textView2" />
+        android:gravity="center"
+        android:text="presented by-"
+        android:textColor="#fff"
+        android:textSize="20sp" />
 
 </RelativeLayout>

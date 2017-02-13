@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="3dp"
     android:layout_marginBottom="5dp"
     android:background="#c8a2ea"
-    android:id="@+id/card_view">
+    app:cardCornerRadius="3dp">
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,11 +20,11 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/top_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="3dp"
                 android:padding="5dp"
-                android:id="@+id/top_image"
                 android:scaleType="centerCrop"/>
 
         </LinearLayout>
@@ -33,63 +34,63 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
                 <TextView
+                    android:id="@+id/title_top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/hello_world"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textSize="20sp"
-                    android:maxLines="1"
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="2dp"
-                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:maxLines="1"
+                    android:text="@string/hello_world"
                     android:textColor="#3b3b3b"
-                    android:id="@+id/title_top" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
             <TextView
+                android:id="@+id/top_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="4"
-                android:gravity="center|start"
-                android:layout_marginStart="2dp"
-                android:text="@string/app_name"
-                android:textSize="14sp"
-                android:layout_below="@+id/title_top"
                 android:layout_alignParentStart="true"
-                android:id="@+id/top_desc" />
+                android:layout_below="@+id/title_top"
+                android:layout_marginStart="2dp"
+                android:gravity="center|start"
+                android:maxLines="5"
+                android:text="@string/app_name"
+                android:textSize="14sp" />
 
             <FrameLayout
+                android:id="@+id/frameLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginStart="2dp"
-                android:background="#9e707070"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="4dp"
                 android:layout_marginEnd="50dp"
-                android:id="@+id/frameLayout">
+                android:layout_marginStart="2dp"
+                android:background="#9e707070">
 
                 <TextView
+                    android:id="@+id/pub_top"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:textSize="12sp"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
+                    android:layout_marginBottom="3dp"
                     android:layout_marginStart="5dp"
-                    android:id="@+id/pub_top"/>
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
 
 
             </FrameLayout>
 
             <ImageView
+                android:id="@+id/share_item"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:srcCompat="@drawable/links_share"
-                android:layout_marginRight="5dp"
-                android:id="@+id/share_item"
                 android:layout_alignBottom="@+id/frameLayout"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                app:srcCompat="@drawable/links_share" />
 
         </RelativeLayout>
         
