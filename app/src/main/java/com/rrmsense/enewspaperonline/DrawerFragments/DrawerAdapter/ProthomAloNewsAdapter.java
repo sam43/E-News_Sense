@@ -3,8 +3,12 @@ package com.rrmsense.enewspaperonline.DrawerFragments.DrawerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +23,7 @@ import com.rrmsense.enewspaperonline.DrawerFragments.Models.ProthomAloFeedItem;
 import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
 import com.rrmsense.enewspaperonline.R;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 
@@ -31,7 +36,7 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
     ArrayList<ProthomAloFeedItem> feedItems;
     Context cxt;
     AppConfig appConfig;
-    //private Target mTarget;
+    private Target mTarget;
 
 
     public ProthomAloNewsAdapter(Context context, ArrayList<ProthomAloFeedItem> feedItems, AppConfig appConfig) {
@@ -54,7 +59,7 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
         holder.Date.setText(current.getPubDate());
         //Log.d("Image Size",holder.Thumbnail.getHeight()+","+ holder.Thumbnail.getWidth() );
 
-/*        mTarget = new Target() {
+        mTarget = new Target() {
             @Override
             public void onBitmapLoaded (Bitmap bitmap, Picasso.LoadedFrom from){
 
@@ -77,9 +82,11 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
                 holder.Thumbnail.setImageDrawable(ContextCompat.getDrawable(cxt, (R.drawable.loading)));
 
             }
-        };*/
+        };
+        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).into(mTarget);
 
-        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_image).into(holder.Thumbnail);
+
+        //Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_image).into(holder.Thumbnail);
 
         //appConfig.New_image_size(holder.Thumbnail.getHeight(), holder.Thumbnail.getWidth());
 

@@ -84,7 +84,12 @@ public class BusinessNewsAdapter extends RecyclerView.Adapter<BusinessNewsAdapte
 
     @Override
     public int getItemCount() {
-        return feedItems.size();
+        if (feedItems !=null) {
+            return feedItems.size();
+        }
+        else {
+            return -1;
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

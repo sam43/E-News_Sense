@@ -37,22 +37,6 @@ public class LatestNewsFragment extends Fragment {
         pd = new ProgressDialog(getActivity());
 
         if(rssFeed.isNetworkConnected()) {
-            pd = new ProgressDialog(getActivity());
-            pd.setMessage("Checking Internet Connection");
-            pd.setCancelable(false);
-            pd.show();
-            pd.dismiss();
-
-            Runnable pdRunnable = new Runnable() {
-                @Override
-                public void run() {
-
-                    pd.dismiss();
-                }
-            };
-
-            Handler pdDismiss = new Handler();
-            pdDismiss.postDelayed(pdRunnable,2000);
 
         } else {
             new AlertDialog.Builder(getActivity()).setTitle("No Internet Connection!")

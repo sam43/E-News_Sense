@@ -1,9 +1,12 @@
 package com.rrmsense.enewspaperonline;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -12,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -88,7 +92,6 @@ public class MainActivity extends AppCompatActivity{
          * Here , we are inflating the TabFragment as the first Fragment
          */
             mFragmentManager = getSupportFragmentManager();
-
 
         OpenFragments(getCurrentFragment());
 
@@ -308,8 +311,18 @@ public class MainActivity extends AppCompatActivity{
     public void OpenFragments(int newsPaper){
         String newsPaperLink;
         boolean saveCurrentFragment = true;
+        if(!isNetworkConnected()){
+            new AlertDialog.Builder(this).setTitle("No Internet Connection!")
+                    .setMessage("It looks like your internet connection is off. Please turn it on and try again")
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                        }
+                    }).setIcon(R.drawable.no_image).show();
+        }
         switch (newsPaper){
-
             case SelectNewspaper.PROTHOM_ALO:
                 getAppConfig(400);
                 CURRENT_FRAGMENT = SelectNewspaper.PROTHOM_ALO;
@@ -534,4 +547,23 @@ public class MainActivity extends AppCompatActivity{
                 .addToBackStack(null)
                 .commit();
     }
+
+    public boolean isNetworkConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        //NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (connectivityManager !=null) {
+            //networkInfo != null && networkInfo.isConnected()
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+            if (networkInfo != null) {
+                if (networkInfo.isConnected()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 }

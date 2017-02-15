@@ -109,7 +109,12 @@ public class OddNewsAdapter extends RecyclerView.Adapter<OddNewsAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return feedItems.size();
+        if (feedItems !=null) {
+            return feedItems.size();
+        }
+        else {
+            return -1;
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
