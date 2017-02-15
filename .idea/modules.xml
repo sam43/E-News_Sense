@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ENewsOnline.iml" filepath="$PROJECT_DIR$/ENewsOnline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/E-News_Sense.iml" filepath="$PROJECT_DIR$/E-News_Sense.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

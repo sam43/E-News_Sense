@@ -1,5 +1,7 @@
 package com.rrmsense.enewspaperonline;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,6 +22,7 @@ public class TabFragment extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     public static int int_items = 3 ;
+    SharedPreferences sharedPref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,11 +32,15 @@ public class TabFragment extends Fragment {
             View x =  inflater.inflate(R.layout.tab_layout, container, false);
             tabLayout = (TabLayout) x.findViewById(R.id.tabs);
             viewPager = (ViewPager) x.findViewById(R.id.viewpager);
+            sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 
         /**
          *Set an Apater for the View Pager
          */
         viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
+        int selectedTab = sharedPref.getInt("SELECTED_TAB", 0);
+        viewPager.setCurrentItem(selectedTab);
+
 
         /**
          * Now , this is a workaround ,
@@ -46,6 +53,28 @@ public class TabFragment extends Fragment {
             public void run() {
                     tabLayout.setupWithViewPager(viewPager);
                    }
+        });
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("SELECTED_TAB",tab.getPosition());
+                editor.apply();
+
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
         });
 
         return x;
@@ -69,6 +98,7 @@ public class TabFragment extends Fragment {
               case 0 : return new LatestNewsFragment();
               case 1 : return new TopNewsFragment();
               case 2 : return new BanglaNewspaperFragment();
+
           }
         return null;
         }

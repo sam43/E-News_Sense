@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +24,7 @@ import com.rrmsense.enewspaperonline.DrawerFragments.BusinessNewsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.EntertainmentFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.Models.SelectNewspaper;
 import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.BusinessNewsDetails;
+import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.OddNewsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.PoliticsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.RssFeeds.BanglaNewsFragments.BDNews24Fragment;
@@ -51,8 +53,8 @@ public class MainActivity extends AppCompatActivity{
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
-    //Deque<Integer> backStack = new ArrayDeque<>();
     Toolbar toolbar;
+    //public Context cxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,6 +219,12 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.clear().apply();
+        //editor.putInt("SELECTED_TAB",0);
+        //editor.apply();
         //CURRENT_FRAGMENT = SelectNewspaper.nav_item_news;
         //setCurrentFragment();
     }
@@ -254,19 +262,20 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-
+        Log.d("Backpress", String.valueOf(getFragmentManager().getBackStackEntryCount()));
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         int backStackCount = sharedPref.getInt("BACK_STACK_COUNT", 0);
 
+        Log.d("BACKSTACK:", String.valueOf(backStackCount));
+        for(int i=0;i<=backStackCount;i++){
+            Log.d("BACKSTACK:"+i, String.valueOf(sharedPref.getInt("FRAGMENT_"+i,-1)));
+        }
+
         if (backStackCount == 1) {
             //Nothing to do... calling 'doubleBackToExit'
             //getFragmentManager().popBackStack();
-        } else if (getFragmentManager().getBackStackEntryCount() > 0 ){
-            getFragmentManager().popBackStackImmediate();
-            return;
-
-        } else {
+        } else if(backStackCount>1){
             //editor.putInt("FRAGMENT_"+backStackCount+1, CURRENT_FRAGMENT);
             editor.putInt("BACK_STACK_COUNT", (backStackCount-1));
             int i = sharedPref.getInt("FRAGMENT_"+(backStackCount-1), SelectNewspaper.nav_item_news);
@@ -298,7 +307,7 @@ public class MainActivity extends AppCompatActivity{
 
     public void OpenFragments(int newsPaper){
         String newsPaperLink;
-        Intent intent;
+        boolean saveCurrentFragment = true;
         switch (newsPaper){
 
             case SelectNewspaper.PROTHOM_ALO:
@@ -324,15 +333,8 @@ public class MainActivity extends AppCompatActivity{
                 CURRENT_FRAGMENT = SelectNewspaper.AAJKAL;
                 //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
                 newsPaperLink ="http://aajkaal.in/";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);
-/*                Aajkal bdFrag = new BDNews24Fragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerView, bdFrag)
-                        .addToBackStack(null)
-                        .commit();
-                        */
+                setWebviewFragment(newsPaperLink);
+                saveCurrentFragment = false;
                 break;
             case SelectNewspaper.SAMAKAL:
                 CURRENT_FRAGMENT = SelectNewspaper.SAMAKAL;
@@ -347,27 +349,15 @@ public class MainActivity extends AppCompatActivity{
                 CURRENT_FRAGMENT = SelectNewspaper.INQILAB;
                 //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
                 newsPaperLink ="https://www.dailyinqilab.com/";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);
-/*                BDNews24Fragment bdFrag = new BDNews24Fragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerView, bdFrag)
-                        .addToBackStack(null)
-                        .commit();*/
+                setWebviewFragment(newsPaperLink);
+                saveCurrentFragment = false;
                 break;
             case SelectNewspaper.MANABZAMIN:
                 CURRENT_FRAGMENT = SelectNewspaper.MANABZAMIN;
                 //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
                 newsPaperLink ="http://www.mzamin.com/";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);
-/*                BDNews24Fragment bdFrag = new BDNews24Fragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerView, bdFrag)
-                        .addToBackStack(null)
-                        .commit();*/
+                setWebviewFragment(newsPaperLink);
+                saveCurrentFragment = false;
                 break;
             case SelectNewspaper.JUGANTOR:
                 CURRENT_FRAGMENT = SelectNewspaper.JUGANTOR;
@@ -381,11 +371,6 @@ public class MainActivity extends AppCompatActivity{
             case SelectNewspaper.KALER_KANTHA:
                 getAppConfig(700);
                 CURRENT_FRAGMENT = SelectNewspaper.KALER_KANTHA;
-/*                newsPaperLink ="http://www.kalerkantho.com/";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);*/
-                //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
                 KalerKanthoFragment kanthoFragment = new KalerKanthoFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.containerView, kanthoFragment)
@@ -404,14 +389,8 @@ public class MainActivity extends AppCompatActivity{
                 CURRENT_FRAGMENT = SelectNewspaper.AMADER_SOMOY;
                 //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
                 newsPaperLink ="http://www.amadershomoy.biz/beta/";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);
-/*                BDNews24Fragment bdFrag = new BDNews24Fragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerView, bdFrag)
-                        .addToBackStack(null)
-                        .commit();*/
+                setWebviewFragment(newsPaperLink);
+                saveCurrentFragment = false;
                 break;
             case SelectNewspaper.INDEPENDENT:
                 CURRENT_FRAGMENT = SelectNewspaper.INDEPENDENT;
@@ -426,14 +405,8 @@ public class MainActivity extends AppCompatActivity{
                 CURRENT_FRAGMENT = SelectNewspaper.NEWAGE;
                 //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
                 newsPaperLink ="http://newagebd.net/";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);
-/*                BDNews24Fragment bdFrag = new BDNews24Fragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerView, bdFrag)
-                        .addToBackStack(null)
-                        .commit();*/
+                setWebviewFragment(newsPaperLink);
+                saveCurrentFragment = false;
                 break;
             case SelectNewspaper.OBSERVER:
                 getAppConfig(700);
@@ -448,14 +421,8 @@ public class MainActivity extends AppCompatActivity{
                 CURRENT_FRAGMENT = SelectNewspaper.NEW_NATION;
                 //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
                 newsPaperLink ="https://thedailynewnation.com/";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);
-/*                BDNews24Fragment bdFrag = new BDNews24Fragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerView, bdFrag)
-                        .addToBackStack(null)
-                        .commit();*/
+                setWebviewFragment(newsPaperLink);
+                saveCurrentFragment = false;
                 break;
             case SelectNewspaper.BDNEWS_24:
                 getAppConfig(700);
@@ -469,19 +436,9 @@ public class MainActivity extends AppCompatActivity{
                 break;
             case SelectNewspaper.DHAKA_TRIBUNE:
                 CURRENT_FRAGMENT = SelectNewspaper.DHAKA_TRIBUNE;
-                //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
-                /*
-                DhakatribuneFragment dhakatribunwFrag = new DhakatribuneFragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerView, dhakatribunwFrag)
-                        .addToBackStack(null)
-                        .commit();
-                        */
                 newsPaperLink ="http://www.dhakatribune.com/";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);
-                break;
+                setWebviewFragment(newsPaperLink);
+                saveCurrentFragment = false;
             case SelectNewspaper.FINANCIAL_EXPRESS:
                 getAppConfig(700);
                 CURRENT_FRAGMENT = SelectNewspaper.FINANCIAL_EXPRESS;
@@ -495,14 +452,8 @@ public class MainActivity extends AppCompatActivity{
                 CURRENT_FRAGMENT = SelectNewspaper.DAILY_SUN;
                 //Toast.makeText(this,"PROTHOM ALO", Toast.LENGTH_SHORT).show();
                 newsPaperLink ="http://www.daily-sun.com/online/national";
-                intent = new Intent(this, BusinessNewsDetails.class);
-                intent.putExtra("Link", newsPaperLink);
-                startActivity(intent);
-/*                BDNews24Fragment bdFrag = new BDNews24Fragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerView, bdFrag)
-                        .addToBackStack(null)
-                        .commit();*/
+                setWebviewFragment(newsPaperLink);
+                saveCurrentFragment = false;
                 break;
             case SelectNewspaper.nav_item_bangla:
                 getAppConfig(700);
@@ -518,13 +469,6 @@ public class MainActivity extends AppCompatActivity{
                 hfragmentTransaction.replace(R.id.containerView,new BanglaNewspaperFragment()).commit();
 
                 break;
-/*            case SelectNewspaper.nav_item_entertainment:
-
-                CURRENT_FRAGMENT = SelectNewspaper.nav_item_entertainment;
-                FragmentTransaction efragmentTransaction = mFragmentManager.beginTransaction();
-                efragmentTransaction.replace(R.id.containerView,new EntertainmentFragment()).commit();
-
-                break;*/
             case SelectNewspaper.nav_item_media:
                 getAppConfig(700);
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_media;
@@ -533,7 +477,7 @@ public class MainActivity extends AppCompatActivity{
 
                 break;
             case SelectNewspaper.nav_item_news:
-                getAppConfig(700);
+                getAppConfig(800);
                 CURRENT_FRAGMENT = SelectNewspaper.nav_item_news;
                 FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                 xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
@@ -574,7 +518,20 @@ public class MainActivity extends AppCompatActivity{
 
                 break;
         }
-        setCurrentFragment();
+        if(saveCurrentFragment)
+            setCurrentFragment();
     }
 
+    private void setWebviewFragment(String newsPaperLink) {
+
+        NewsDetailsFragment nd = new NewsDetailsFragment();
+        Bundle b = new Bundle();
+        b.putString("Link", newsPaperLink);
+        nd.setArguments(b);
+        this.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.containerView, nd)
+                .addToBackStack(null)
+                .commit();
+    }
 }

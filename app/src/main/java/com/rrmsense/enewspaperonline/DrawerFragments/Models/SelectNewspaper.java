@@ -34,5 +34,6 @@ public class SelectNewspaper {
     public static final int nav_item_breaking = 39;
     //public static final int nav_item_more=40;
     public static final int nav_item_about = 41;
+    public static final int NEWS_DETAILS = 100;
 
 }
