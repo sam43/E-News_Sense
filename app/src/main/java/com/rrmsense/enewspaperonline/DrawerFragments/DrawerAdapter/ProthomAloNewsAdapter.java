@@ -100,7 +100,6 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
                 ((FragmentActivity) cxt).getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.containerView, nd)
-                        .addToBackStack(null)
                         .commit();
             }
         });
