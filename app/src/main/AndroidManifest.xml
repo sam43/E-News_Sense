@@ -19,8 +19,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.rrmsense.enewspaperonline.TopNews.TopNewsDetails" />
-        <activity android:name="com.rrmsense.enewspaperonline.TabLatest.LatestNewsDetails" />
         <activity android:name="com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.BusinessNewsDetails" />
         <activity
             android:name="com.rrmsense.enewspaperonline.BottomSheet.BottomSheetBaseActivity"

@@ -3,6 +3,8 @@ package com.rrmsense.enewspaperonline.DrawerFragments.DrawerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +16,8 @@ import android.widget.TextView;
 import com.rrmsense.enewspaperonline.AppConfig;
 import com.rrmsense.enewspaperonline.BottomSheet.BottomSheetBaseActivity;
 import com.rrmsense.enewspaperonline.DrawerFragments.Models.ProthomAloFeedItem;
+import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
 import com.rrmsense.enewspaperonline.R;
-import com.rrmsense.enewspaperonline.TabLatest.LatestNewsDetails;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -77,16 +79,22 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
             }
         };*/
 
-        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_image).into(holder.Thumbnail);
+        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_pic).into(holder.Thumbnail);
 
         //appConfig.New_image_size(holder.Thumbnail.getHeight(), holder.Thumbnail.getWidth());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(cxt, LatestNewsDetails.class);
-                intent.putExtra("Link", current.getLink());
-                cxt.startActivity(intent);
+                NewsDetailsFragment nd = new NewsDetailsFragment();
+                Bundle b = new Bundle();
+                b.putString("Link", current.getLink());
+                nd.setArguments(b);
+                ((FragmentActivity) cxt).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.containerView, nd)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

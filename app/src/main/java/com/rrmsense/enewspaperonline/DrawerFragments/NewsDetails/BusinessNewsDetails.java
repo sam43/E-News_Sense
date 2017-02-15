@@ -16,7 +16,7 @@ public class BusinessNewsDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_latest_news_details);
+        setContentView(R.layout.fragment_news_details);
 
         web_bzns = (WebView) findViewById(R.id.webview_new);
         pb_bzns = (ProgressBar) findViewById(R.id.progressBar_new);

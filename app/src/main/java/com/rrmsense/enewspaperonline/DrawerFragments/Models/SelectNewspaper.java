@@ -23,17 +23,16 @@ public class SelectNewspaper {
     public static final int DHAKA_TRIBUNE = 26;
     public static final int FINANCIAL_EXPRESS = 27;
     public static final int DAILY_SUN = 28;
-
-    public static final int  nav_item_bangla = 31;
-    public static final int  nav_item_news =32;
-    public static final int nav_item_media =33;
-    public static final int nav_item_techs=34;
-    public static final int nav_item_odd=35;
-    public static final int     nav_item_sports=36;
-    //public static final int  nav_item_entertainment=37;
-    public static final int       nav_item_politics=38;
-    public static final int  nav_item_breaking=39;
-    //public static final int     nav_item_more=40;
-    public static final int nav_item_about=41;
+    public static final int nav_item_bangla = 31;
+    public static final int nav_item_news = 32;
+    public static final int nav_item_media = 33;
+    public static final int nav_item_techs = 34;
+    public static final int nav_item_odd = 35;
+    public static final int nav_item_sports = 36;
+    //public static final int nav_item_entertainment=37;
+    public static final int nav_item_politics = 38;
+    public static final int nav_item_breaking = 39;
+    //public static final int nav_item_more=40;
+    public static final int nav_item_about = 41;
 
 }

@@ -40,6 +40,10 @@ import com.rrmsense.enewspaperonline.DrawerFragments.SportsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.TechnologyFragment;
 import com.testfairy.TestFairy;
 
+/**
+ * Created by sam43 on 1/28/17.
+ */
+
 public class MainActivity extends AppCompatActivity{
     public AppConfig appConfig;
     public int CURRENT_FRAGMENT;
@@ -203,21 +207,11 @@ public class MainActivity extends AppCompatActivity{
             if(i!=CURRENT_FRAGMENT){
                 editor.putInt("FRAGMENT_"+(backStackCount+1), CURRENT_FRAGMENT);
                 editor.putInt("BACK_STACK_COUNT", (backStackCount+1));
-
             }
-
         }
-
         editor.apply();
-        Log.d("CURRENT_FRAGMENT", String.valueOf(CURRENT_FRAGMENT));
-        /*
-        if(backStack.isEmpty()){
-            backStack.push(CURRENT_FRAGMENT);
-        }
-        else if(backStack.peek()!=CURRENT_FRAGMENT){
-            backStack.push(CURRENT_FRAGMENT);
-        }
-        */
+        //Log.d("CURRENT_FRAGMENT", String.valueOf(CURRENT_FRAGMENT));
+
     }
 
     @Override
@@ -264,9 +258,15 @@ public class MainActivity extends AppCompatActivity{
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         int backStackCount = sharedPref.getInt("BACK_STACK_COUNT", 0);
-        if(backStackCount==1){
 
-        }else{
+        if (backStackCount == 1) {
+            //Nothing to do... calling 'doubleBackToExit'
+            //getFragmentManager().popBackStack();
+        } else if (getFragmentManager().getBackStackEntryCount() > 0 ){
+            getFragmentManager().popBackStackImmediate();
+            return;
+
+        } else {
             //editor.putInt("FRAGMENT_"+backStackCount+1, CURRENT_FRAGMENT);
             editor.putInt("BACK_STACK_COUNT", (backStackCount-1));
             int i = sharedPref.getInt("FRAGMENT_"+(backStackCount-1), SelectNewspaper.nav_item_news);
@@ -275,9 +275,6 @@ public class MainActivity extends AppCompatActivity{
             return;
 
         }
-
-
-
         if(doubleBackToExit) {
             super.onBackPressed();
             editor.clear().apply();
@@ -292,7 +289,7 @@ public class MainActivity extends AppCompatActivity{
             public void run() {
                 doubleBackToExit = false;
             }
-        }, 2000);
+        }, 3000);
 
     }
     public void setActionBarTitle(String title) {

@@ -65,7 +65,7 @@ public class BanglaNewspaperFragment extends Fragment {
 
         // Set title bar
         ((MainActivity) getActivity())
-                .setActionBarTitle("বাংলা সংবাদপত্র");
+                .setActionBarTitle("Home");
 
     }
 }

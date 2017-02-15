@@ -3,6 +3,8 @@ package com.rrmsense.enewspaperonline.TopNews;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.rrmsense.enewspaperonline.AppConfig;
 import com.rrmsense.enewspaperonline.BottomSheet.BottomSheetBaseActivity;
+import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
 import com.rrmsense.enewspaperonline.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -53,31 +56,7 @@ public class TopNewsAdapter extends RecyclerView.Adapter<TopNewsAdapter.MyViewHo
         holder.Title.setText(current.getTitle());
         holder.Description.setText(current.getDescription());
         holder.Date.setText(current.getPubDate());
-/*        mTarget = new Target() {
-            @Override
-            public void onBitmapLoaded (Bitmap bitmap, Picasso.LoadedFrom from){
-
-                appConfig.New_image_size(bitmap.getHeight(),bitmap.getWidth());
-                bitmap = appConfig.getResizedBitmap(bitmap, appConfig.getIMAGE_NEW_WIDTH(), appConfig.getIMAGE_NEW_HEIGHT());
-                holder.Thumbnail.setImageBitmap(bitmap);
-
-            }
-
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-                Bitmap noBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.no_image);
-                appConfig.New_image_size(noBitmap.getHeight(),noBitmap.getWidth());
-                noBitmap = appConfig.getResizedBitmap(noBitmap, appConfig.getIMAGE_NEW_WIDTH(), appConfig.getIMAGE_NEW_HEIGHT());
-                holder.Thumbnail.setImageBitmap(noBitmap);
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-                holder.Thumbnail.setImageDrawable(ContextCompat.getDrawable(context, (R.drawable.loading)));
-
-            }
-        };*/
-        try{
+        try {
             Picasso.with(context).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_image).into(holder.Thumbnail);
         }catch (Exception e){
 
@@ -86,9 +65,14 @@ public class TopNewsAdapter extends RecyclerView.Adapter<TopNewsAdapter.MyViewHo
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, TopNewsDetails.class);
-                intent.putExtra("Link", current.getLink());
-                context.startActivity(intent);
+                NewsDetailsFragment nd = new NewsDetailsFragment();
+                Bundle b = new Bundle();
+                b.putString("Link", current.getLink());
+                nd.setArguments(b);
+                ((FragmentActivity) context).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.containerView, nd)
+                        .commit();
             }
         });
 

@@ -3,6 +3,8 @@ package com.rrmsense.enewspaperonline.DrawerFragments.DrawerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import com.rrmsense.enewspaperonline.AppConfig;
 import com.rrmsense.enewspaperonline.BottomSheet.BottomSheetBaseActivity;
 import com.rrmsense.enewspaperonline.DrawerFragments.Models.DataModel;
 import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.BusinessNewsDetails;
+import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
 import com.rrmsense.enewspaperonline.R;
 
 import java.util.ArrayList;
@@ -56,9 +59,14 @@ public class BusinessNewsAdapter extends RecyclerView.Adapter<BusinessNewsAdapte
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(cxt, BusinessNewsDetails.class);
-                intent.putExtra("Link", current.getLink());
-                cxt.startActivity(intent);
+                NewsDetailsFragment nd = new NewsDetailsFragment();
+                Bundle b = new Bundle();
+                b.putString("Link", current.getLink());
+                nd.setArguments(b);
+                ((FragmentActivity) cxt).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.containerView, nd)
+                        .commit();
             }
         });
 
