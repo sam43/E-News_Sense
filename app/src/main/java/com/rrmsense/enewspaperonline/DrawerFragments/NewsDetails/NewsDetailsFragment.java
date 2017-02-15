@@ -74,9 +74,12 @@ public class NewsDetailsFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPref.edit();
         int backStackCount = sharedPref.getInt("BACK_STACK_COUNT", 0);
         int i = sharedPref.getInt("FRAGMENT_"+backStackCount, SelectNewspaper.nav_item_news);
-        editor.putInt("FRAGMENT_"+(backStackCount+1), SelectNewspaper.NEWS_DETAILS);
-        editor.putInt("BACK_STACK_COUNT", (backStackCount+1));
-        editor.apply();
+        if(i!=SelectNewspaper.NEWS_DETAILS){
+            editor.putInt("FRAGMENT_"+(backStackCount+1), SelectNewspaper.NEWS_DETAILS);
+            editor.putInt("BACK_STACK_COUNT", (backStackCount+1));
+            editor.apply();
+        }
+
         //Log.d("CURRENT_FRAGMENT", String.valueOf(CURRENT_FRAGMENT));
 
     }

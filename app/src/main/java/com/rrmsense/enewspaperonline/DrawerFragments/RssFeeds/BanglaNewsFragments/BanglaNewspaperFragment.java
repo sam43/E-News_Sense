@@ -1,6 +1,8 @@
 package com.rrmsense.enewspaperonline.DrawerFragments.RssFeeds.BanglaNewsFragments;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,12 +19,16 @@ import com.rrmsense.enewspaperonline.R;
 
 public class BanglaNewspaperFragment extends Fragment {
 
+    SharedPreferences sharedPref;
     private FragmentTabHost mTabHost;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+        sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+
         View rootView = inflater.inflate(R.layout.fragment_bangla_newspaper, container, false);
 
         mTabHost = (FragmentTabHost)rootView.findViewById(android.R.id.tabhost);
@@ -34,6 +40,12 @@ public class BanglaNewspaperFragment extends Fragment {
                 EnglishFragment.class, null);
         mTabHost.setCurrentTab(0);
 
+
+
+        int selectedTab = sharedPref.getInt("SELECTED_TAB_BANGLA", 0);
+        mTabHost.setCurrentTab(selectedTab);
+
+
         mTabHost.getTabWidget().getChildAt(mTabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#a674e1")); // selected
         TextView tv = (TextView) mTabHost.getCurrentTabView().findViewById(android.R.id.title); //for Selected Tab
         tv.setTextColor(Color.parseColor("#ffffff"));
@@ -42,6 +54,11 @@ public class BanglaNewspaperFragment extends Fragment {
 
             @Override
             public void onTabChanged(String tabId) {
+
+
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("SELECTED_TAB_BANGLA",mTabHost.getCurrentTab());
+                editor.apply();
 
                 for (int i = 0; i < mTabHost.getTabWidget().getChildCount(); i++) {
                     mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#a674e1")); // unselected

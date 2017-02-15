@@ -254,10 +254,11 @@ public class MainActivity extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_refresh) {
-            Intent i = getIntent();
-            finish();
-            startActivity(i); // for each page
-
+            //Intent i = getIntent();
+            //finish();
+            //startActivity(i); // for each page
+            if(getCurrentFragment()!=SelectNewspaper.NEWS_DETAILS)
+                OpenFragments(getCurrentFragment());
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -274,6 +275,7 @@ public class MainActivity extends AppCompatActivity{
         for(int i=0;i<=backStackCount;i++){
             Log.d("BACKSTACK:"+i, String.valueOf(sharedPref.getInt("FRAGMENT_"+i,-1)));
         }
+        Log.d("BACKSTACK","--------------------------");
 
         if (backStackCount == 1) {
             //Nothing to do... calling 'doubleBackToExit'

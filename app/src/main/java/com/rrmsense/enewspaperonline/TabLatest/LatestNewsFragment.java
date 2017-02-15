@@ -35,21 +35,6 @@ public class LatestNewsFragment extends Fragment {
         /** Checking for internet and show dialog*/
 
         pd = new ProgressDialog(getActivity());
-
-        if(rssFeed.isNetworkConnected()) {
-
-        } else {
-            new AlertDialog.Builder(getActivity()).setTitle("No Internet Connection!")
-                    .setMessage("It looks like your internet connection is off. Please turn it on and try again")
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-                        }
-                    }).setIcon(R.drawable.no_image).show();
-        }
-
         return v;
     }
 
