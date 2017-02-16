@@ -62,8 +62,6 @@ public class TabFragment extends Fragment {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("SELECTED_TAB",tab.getPosition());
                 editor.apply();
-
-
             }
 
             @Override

@@ -79,7 +79,7 @@ public class OddNewsAdapter extends RecyclerView.Adapter<OddNewsAdapter.MyViewHo
             }
         };*/
 
-        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_image).into(holder.thumb);
+        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_pic).into(holder.thumb);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
