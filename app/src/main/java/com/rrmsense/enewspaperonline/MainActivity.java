@@ -254,11 +254,10 @@ public class MainActivity extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_refresh) {
-            //Intent i = getIntent();
-            //finish();
-            //startActivity(i); // for each page
-            if(getCurrentFragment()!=SelectNewspaper.NEWS_DETAILS)
-                OpenFragments(getCurrentFragment());
+            Intent i = getIntent();
+            finish();
+            startActivity(i); // for each page
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -266,15 +265,15 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        //Log.d("Backpress", String.valueOf(getFragmentManager().getBackStackEntryCount()));
+        Log.d("Backpress", String.valueOf(getFragmentManager().getBackStackEntryCount()));
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         int backStackCount = sharedPref.getInt("BACK_STACK_COUNT", 0);
 
-/*        Log.d("BACKSTACK:", String.valueOf(backStackCount));
+        Log.d("BACKSTACK:", String.valueOf(backStackCount));
         for(int i=0;i<=backStackCount;i++){
-            //Log.d("BACKSTACK:"+i, String.valueOf(sharedPref.getInt("FRAGMENT_"+i,-1)));
-        }*/
+            Log.d("BACKSTACK:"+i, String.valueOf(sharedPref.getInt("FRAGMENT_"+i,-1)));
+        }
 
         if (backStackCount == 1) {
             //Nothing to do... calling 'doubleBackToExit'
