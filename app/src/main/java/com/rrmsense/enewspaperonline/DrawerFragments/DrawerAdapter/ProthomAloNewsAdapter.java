@@ -36,7 +36,7 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
     ArrayList<ProthomAloFeedItem> feedItems;
     Context cxt;
     AppConfig appConfig;
-    private Target mTarget;
+    //private Target mTarget;
 
 
     public ProthomAloNewsAdapter(Context context, ArrayList<ProthomAloFeedItem> feedItems, AppConfig appConfig) {
@@ -59,7 +59,7 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
         holder.Date.setText(current.getPubDate());
         //Log.d("Image Size",holder.Thumbnail.getHeight()+","+ holder.Thumbnail.getWidth() );
 
-        mTarget = new Target() {
+/*        mTarget = new Target() {
             @Override
             public void onBitmapLoaded (Bitmap bitmap, Picasso.LoadedFrom from){
 
@@ -83,12 +83,11 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
 
             }
         };
-        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).into(mTarget);
+        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).into(mTarget);*/
 
 
-        //Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_image).into(holder.Thumbnail);
+        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.loading).error(R.drawable.no_pic).into(holder.Thumbnail);
 
-        //appConfig.New_image_size(holder.Thumbnail.getHeight(), holder.Thumbnail.getWidth());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +128,7 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
         TextView Title,Date;
         ImageView Thumbnail, share;
         CardView cardView;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             Title= (TextView) itemView.findViewById(R.id.title_text);
