@@ -2,7 +2,6 @@ package com.rrmsense.enewspaperonline;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -10,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -18,7 +16,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,7 +24,6 @@ import com.rrmsense.enewspaperonline.DrawerFragments.AboutFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.BusinessNewsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.EntertainmentFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.Models.SelectNewspaper;
-import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.BusinessNewsDetails;
 import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.OddNewsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.PoliticsFragment;
@@ -141,11 +137,6 @@ public class MainActivity extends AppCompatActivity{
                      OpenFragments(SelectNewspaper.nav_item_politics);
 
                  }
-
-/*                 if (menuItem.getItemId() == R.id.nav_item_breaking) {
-                     OpenFragments(SelectNewspaper.nav_item_breaking);
-
-                 }*/
 
                  if (menuItem.getItemId() == R.id.nav_item_about) {
                      OpenFragments(SelectNewspaper.nav_item_about);

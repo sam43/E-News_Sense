@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.rrmsense.enewspaperonline.DrawerFragments.Models.SelectNewspaper;
 import com.rrmsense.enewspaperonline.MainActivity;
 import com.rrmsense.enewspaperonline.R;
 
@@ -39,6 +40,7 @@ public class BanglaNewspaperFragment extends Fragment {
         mTabHost.addTab(mTabHost.newTabSpec("English").setIndicator("English"),
                 EnglishFragment.class, null);
         mTabHost.setCurrentTab(0);
+        mTabHost.setCurrentTab(SelectNewspaper.NEWS_DETAILS);
 
 
 
