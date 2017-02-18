@@ -34,6 +34,7 @@ public class BanglaNewspaperFragment extends Fragment {
 
         mTabHost = (FragmentTabHost)rootView.findViewById(android.R.id.tabhost);
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.realtabcontent);
+        mTabHost.getTabWidget().getLayoutParams().height = 140;
 
         mTabHost.addTab(mTabHost.newTabSpec("Bangla").setIndicator("বাংলা"),
                 BanglaFragment.class, null);
