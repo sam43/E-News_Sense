@@ -50,7 +50,6 @@ import com.testfairy.TestFairy;
  * Created by sam43 on 1/28/17.
  */
 
-@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity{
     public AppConfig appConfig;
     public int CURRENT_FRAGMENT;
@@ -165,14 +164,26 @@ public class MainActivity extends AppCompatActivity{
                 android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
                 ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout, toolbar,R.string.app_name,
                 R.string.app_name);
+
                 mDrawerLayout.setDrawerListener(mDrawerToggle);
+
                 mDrawerToggle.syncState();
+
+
+
+
     }
 
     private void getAppConfig(int x) {
+
         appConfig = new AppConfig();
         appConfig.setWIDTH(Resources.getSystem().getDisplayMetrics().widthPixels);
+        //appConfig.setHEIGHT(Resources.getSystem().getDisplayMetrics().heightPixels);
         appConfig.CalculateColumn(x);
+        //Log.d("Cxt",String.valueOf(appConfig.getCOLOMN()));
+        //appConfig.Image_Setter();
+        //Toast.makeText(this,"Clm;"+appConfig.getCOLOMN()+","+Resources.getSystem().getDisplayMetrics().widthPixels,Toast.LENGTH_LONG).show();
+
     }
 
     private int getCurrentFragment() {
@@ -243,10 +254,11 @@ public class MainActivity extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_refresh) {
-            Intent i = getIntent();
-            finish();
-            startActivity(i); // for each page
-
+            //Intent i = getIntent();
+            //finish();
+            //startActivity(i); // for each page
+            if(getCurrentFragment()!= SelectNewspaper.NEWS_DETAILS)
+                OpenFragments(getCurrentFragment());
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -262,7 +274,8 @@ public class MainActivity extends AppCompatActivity{
 /*        Log.d("BACKSTACK:", String.valueOf(backStackCount));
         for(int i=0;i<=backStackCount;i++){
             Log.d("BACKSTACK:"+i, String.valueOf(sharedPref.getInt("FRAGMENT_"+i,-1)));
-        }*/
+        }
+        Log.d("BACKSTACK","--------------------------");*/
 
         if (backStackCount == 1) {
             //Nothing to do... calling 'doubleBackToExit'

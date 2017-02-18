@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.rrmsense.enewspaperonline.AppConfig;
 import com.rrmsense.enewspaperonline.BottomSheet.BottomSheetBaseActivity;
+import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.BusinessNewsDetails;
 import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
 import com.rrmsense.enewspaperonline.R;
 import com.squareup.picasso.Picasso;
@@ -31,7 +36,6 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.My
     Context cxt;
     AppConfig appConfig;
     //private Target mTarget;
-    //Uri uri;
 
 
     public LatestNewsAdapter(Context context, ArrayList<LatestFeedItem> feedItems,AppConfig appConfig) {
@@ -54,37 +58,23 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.My
         holder.Description.setText(current.getDescription());
         holder.Date.setText(current.getPubDate());
 
-
-        //uri = Uri.parse("http://i.imgur.com/I6QPAk2.gif");
-
-
-
-        /*Ion.with(cxt).load(current.getThumbnailUrl())
-                .withBitmap()
-                .animateGif(AnimateGifMode.ANIMATE)
-                .error(R.drawable.no_pic)
-                .intoImageView(holder.Thumbnail);*/
-
-        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).placeholder(R.drawable.white).fit().error(R.drawable.no_pic).into(holder.Thumbnail,new com.squareup.picasso.Callback() {
+        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).fit().centerInside().placeholder(R.drawable.white).error(R.drawable.no_image).into(holder.Thumbnail, new com.squareup.picasso.Callback() {
             @Override
             public void onSuccess() {
-                //do smth when picture is loaded successfully
                 holder.pb.setVisibility(View.INVISIBLE);
 
             }
 
             @Override
             public void onError() {
-                //do smth when there is picture loading error
+
             }
         });
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-/*                Intent intent = new Intent(cxt, BusinessNewsDetails.class);
-                intent.putExtra("Link", current.getLink());
-                cxt.startActivity(intent);*/
+
                 NewsDetailsFragment nd = new NewsDetailsFragment();
                 Bundle b = new Bundle();
                 b.putString("Link", current.getLink());
@@ -123,7 +113,6 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.My
         CardView cardView;
         ProgressBar pb;
 
-
         public MyViewHolder(View itemView) {
             super(itemView);
             Title= (TextView) itemView.findViewById(R.id.title_text);
@@ -133,7 +122,6 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.My
             cardView= (CardView) itemView.findViewById(R.id.card_view);
             share = (ImageView) itemView.findViewById(R.id.share);
             pb = (ProgressBar) itemView.findViewById(R.id.pro_item);
-            //Glide.with(cxt).load("http://i.imgur.com/I6QPAk2.gif").into(Thumbnail);
         }
     }
 }
