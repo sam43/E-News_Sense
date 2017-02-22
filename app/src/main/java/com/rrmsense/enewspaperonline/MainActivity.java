@@ -213,10 +213,10 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+/*
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.clear().apply();
+        editor.clear().apply();*/
         //editor.putInt("SELECTED_TAB",0);
         //editor.apply();
         //CURRENT_FRAGMENT = SelectNewspaper.nav_item_news;
