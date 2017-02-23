@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.rrmsense.enewspaperonline.DrawerFragments.Models.SelectNewspaper;
 import com.rrmsense.enewspaperonline.MainActivity;
 import com.rrmsense.enewspaperonline.R;
 
@@ -33,12 +34,14 @@ public class BanglaNewspaperFragment extends Fragment {
 
         mTabHost = (FragmentTabHost)rootView.findViewById(android.R.id.tabhost);
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.realtabcontent);
+        mTabHost.getTabWidget().getLayoutParams().height = 140;
 
         mTabHost.addTab(mTabHost.newTabSpec("Bangla").setIndicator("বাংলা"),
                 BanglaFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("English").setIndicator("English"),
                 EnglishFragment.class, null);
         mTabHost.setCurrentTab(0);
+        mTabHost.setCurrentTab(SelectNewspaper.NEWS_DETAILS);
 
 
 

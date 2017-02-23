@@ -2,7 +2,6 @@ package com.rrmsense.enewspaperonline;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -10,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -18,7 +16,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,7 +24,6 @@ import com.rrmsense.enewspaperonline.DrawerFragments.AboutFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.BusinessNewsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.EntertainmentFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.Models.SelectNewspaper;
-import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.BusinessNewsDetails;
 import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.OddNewsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.PoliticsFragment;
@@ -50,7 +46,6 @@ import com.testfairy.TestFairy;
  * Created by sam43 on 1/28/17.
  */
 
-@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity{
     public AppConfig appConfig;
     public int CURRENT_FRAGMENT;
@@ -143,11 +138,6 @@ public class MainActivity extends AppCompatActivity{
 
                  }
 
-/*                 if (menuItem.getItemId() == R.id.nav_item_breaking) {
-                     OpenFragments(SelectNewspaper.nav_item_breaking);
-
-                 }*/
-
                  if (menuItem.getItemId() == R.id.nav_item_about) {
                      OpenFragments(SelectNewspaper.nav_item_about);
 
@@ -165,14 +155,26 @@ public class MainActivity extends AppCompatActivity{
                 android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
                 ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout, toolbar,R.string.app_name,
                 R.string.app_name);
+
                 mDrawerLayout.setDrawerListener(mDrawerToggle);
+
                 mDrawerToggle.syncState();
+
+
+
+
     }
 
     private void getAppConfig(int x) {
+
         appConfig = new AppConfig();
         appConfig.setWIDTH(Resources.getSystem().getDisplayMetrics().widthPixels);
+        //appConfig.setHEIGHT(Resources.getSystem().getDisplayMetrics().heightPixels);
         appConfig.CalculateColumn(x);
+        //Log.d("Cxt",String.valueOf(appConfig.getCOLOMN()));
+        //appConfig.Image_Setter();
+        //Toast.makeText(this,"Clm;"+appConfig.getCOLOMN()+","+Resources.getSystem().getDisplayMetrics().widthPixels,Toast.LENGTH_LONG).show();
+
     }
 
     private int getCurrentFragment() {
@@ -211,10 +213,10 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+/*
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.clear().apply();
+        editor.clear().apply();*/
         //editor.putInt("SELECTED_TAB",0);
         //editor.apply();
         //CURRENT_FRAGMENT = SelectNewspaper.nav_item_news;
@@ -243,10 +245,11 @@ public class MainActivity extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_refresh) {
-            Intent i = getIntent();
-            finish();
-            startActivity(i); // for each page
-
+            //Intent i = getIntent();
+            //finish();
+            //startActivity(i); // for each page
+            if(getCurrentFragment()!= SelectNewspaper.NEWS_DETAILS)
+                OpenFragments(getCurrentFragment());
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -262,7 +265,8 @@ public class MainActivity extends AppCompatActivity{
 /*        Log.d("BACKSTACK:", String.valueOf(backStackCount));
         for(int i=0;i<=backStackCount;i++){
             Log.d("BACKSTACK:"+i, String.valueOf(sharedPref.getInt("FRAGMENT_"+i,-1)));
-        }*/
+        }
+        Log.d("BACKSTACK","--------------------------");*/
 
         if (backStackCount == 1) {
             //Nothing to do... calling 'doubleBackToExit'

@@ -15,7 +15,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:background="@color/purple"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:showDividers="middle"
+            android:soundEffectsEnabled="true"
+            android:splitMotionEvents="true"
+            android:tabStripEnabled="true"
+            android:tabStripLeft="@color/black"
+            android:tabStripRight="@color/black" />
 
         <FrameLayout
             android:id="@android:id/tabcontent"

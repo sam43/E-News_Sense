@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.rrmsense.enewspaperonline.AppConfig;
 import com.rrmsense.enewspaperonline.BottomSheet.BottomSheetBaseActivity;
 import com.rrmsense.enewspaperonline.DrawerFragments.NewsDetails.NewsDetailsFragment;
@@ -58,14 +59,7 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.My
         //uri = Uri.parse("http://i.imgur.com/I6QPAk2.gif");
 
 
-
-        /*Ion.with(cxt).load(current.getThumbnailUrl())
-                .withBitmap()
-                .animateGif(AnimateGifMode.ANIMATE)
-                .error(R.drawable.no_pic)
-                .intoImageView(holder.Thumbnail);*/
-
-        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).placeholder(R.drawable.white).fit().error(R.drawable.no_pic).into(holder.Thumbnail,new com.squareup.picasso.Callback() {
+        Picasso.with(cxt).load(String.valueOf(current.getThumbnailUrl())).placeholder(R.drawable.white).fit().error(R.drawable.no_pic).into(holder.Thumbnail, new com.squareup.picasso.Callback() {
             @Override
             public void onSuccess() {
                 //do smth when picture is loaded successfully
