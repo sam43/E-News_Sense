@@ -3,6 +3,7 @@ package com.rrmsense.enewspaperonline.TabLatest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
@@ -93,6 +94,9 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.My
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    return;
+                }
                 Intent intent = new Intent(v.getContext(), BottomSheetBaseActivity.class);
                 intent.putExtra("Link", current.getLink());
                 ((Activity)v.getContext()).startActivity(intent);
@@ -127,6 +131,9 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.My
             cardView= (CardView) itemView.findViewById(R.id.card_view);
             share = (ImageView) itemView.findViewById(R.id.share);
             pb = (ProgressBar) itemView.findViewById(R.id.pro_item);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                share.setVisibility(ImageView.INVISIBLE);
+            }
             //Glide.with(cxt).load("http://i.imgur.com/I6QPAk2.gif").into(Thumbnail);
         }
     }

@@ -3,6 +3,7 @@ package com.rrmsense.enewspaperonline.DrawerFragments.DrawerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
@@ -73,6 +74,9 @@ public class BusinessNewsAdapter extends RecyclerView.Adapter<BusinessNewsAdapte
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    return;
+                }
                 Intent intent = new Intent(v.getContext(), BottomSheetBaseActivity.class);
                 intent.putExtra("Link", current.getLink());
                 ((Activity)v.getContext()).startActivity(intent);
@@ -103,6 +107,9 @@ public class BusinessNewsAdapter extends RecyclerView.Adapter<BusinessNewsAdapte
             Date= (TextView) itemView.findViewById(R.id.pubDate_bzns);
             share = (ImageView) itemView.findViewById(R.id.share_bzns);
             cardView= (CardView) itemView.findViewById(R.id.card_view_bzns);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                share.setVisibility(ImageView.INVISIBLE);
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -106,6 +107,9 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    return;
+                }
                 Intent intent = new Intent(v.getContext(), BottomSheetBaseActivity.class);
                 intent.putExtra("Link", current.getLink());
                 ((Activity)v.getContext()).startActivity(intent);
@@ -136,6 +140,9 @@ public class ProthomAloNewsAdapter extends RecyclerView.Adapter<ProthomAloNewsAd
             Thumbnail= (ImageView) itemView.findViewById(R.id.thumb_img);
             cardView= (CardView) itemView.findViewById(R.id.card_view);
             share = (ImageView) itemView.findViewById(R.id.share);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                share.setVisibility(ImageView.INVISIBLE);
+            }
         }
     }
 
