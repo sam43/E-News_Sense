@@ -32,13 +32,14 @@
     <android.support.design.widget.NavigationView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/background_nav_bar"
         android:id="@+id/shitstuff"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:layout_marginTop="-2dp"
         app:itemIconTint="#BA68C8"
-        app:itemTextColor="@color/black"
+        app:itemTextColor="@color/white"
         app:menu="@menu/drawermenu"/>
 
     </android.support.v4.widget.DrawerLayout>

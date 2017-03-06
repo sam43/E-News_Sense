@@ -40,7 +40,7 @@ import com.rrmsense.enewspaperonline.DrawerFragments.RssFeeds.BanglaNewsFragment
 import com.rrmsense.enewspaperonline.DrawerFragments.RssFeeds.BanglaNewsFragments.VorerKagojFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.SportsFragment;
 import com.rrmsense.enewspaperonline.DrawerFragments.TechnologyFragment;
-import com.testfairy.TestFairy;
+//import com.testfairy.TestFairy;
 
 /**
  * Created by sam43 on 1/28/17.
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity{
 
         //getAppConfig();
 
-        TestFairy.begin(this, "58be2cfb694001bf6c46ed8c644dfdb936be7b29");
+        //TestFairy.begin(this, "58be2cfb694001bf6c46ed8c644dfdb936be7b29");
 
         //int orientation = this.getResources().getConfiguration().orientation;
 
